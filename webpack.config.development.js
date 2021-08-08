@@ -8,8 +8,19 @@ module.exports = {
   entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js',
+    filename: './dist/index.js',
     publicPath: "/",
+  },
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: [
+          { loader: 'ts-loader', options: { transpileOnly: true } },
+        ],
+        exclude: /node_modules/,
+      },
+    ],
   },
   plugins: [
     new ForkTsCheckerWebpackPlugin({
@@ -24,17 +35,6 @@ module.exports = {
       template: 'src/index.html',
     }),
   ],
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        use: [
-          { loader: 'ts-loader', options: { transpileOnly: true } },
-        ],
-        exclude: /node_modules/,
-      },
-    ],
-  },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },

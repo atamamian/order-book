@@ -23,12 +23,12 @@ module.exports = {
     rules: {
         '@typescript-eslint/explicit-function-return-type': 'off',
         '@typescript-eslint/no-unused-vars': 'off',
-
+        "react/jsx-uses-react": "off",
+        "react/react-in-jsx-scope": "off",
         'react/no-direct-mutation-state': 'off',
         'react/no-deprecated': 'off',
         'react/no-string-refs': 'off',
         'react/require-render-return': 'off',
-
         'react/jsx-filename-extension': [
             'warn',
             {

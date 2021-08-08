@@ -1,13 +1,33 @@
 const path = require('path');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const { removeDataTestIdTransformer } = require('typescript-transformer-jsx-remove-data-test-id');
 
 module.exports = {
   context: process.cwd(),
   entry: './src/index.tsx',
   output: {
     path: path.join(process.cwd(), 'dist'),
-    filename: '[name].js',
+    filename: './dist/index.js',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              getCustomTransformers: () => ({
+                before: [removeDataTestIdTransformer()],
+              }),
+              transpileOnly: true
+            },
+          },
+        ],
+        exclude: /node_modules/,
+      },
+    ],
   },
   plugins: [
     new ForkTsCheckerWebpackPlugin({
@@ -33,17 +53,6 @@ module.exports = {
       },
     }),
   ],
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        use: [
-          { loader: 'ts-loader', options: { transpileOnly: true } },
-        ],
-        exclude: /node_modules/,
-      },
-    ],
-  },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },

@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
+import { FC, ReactElement } from 'react';
 
-const App: FC = () => <div>Order Book</div>;
+const App: FC = (): ReactElement => <div data-testid="headline">Order Book</div>;
 
 export default App;
