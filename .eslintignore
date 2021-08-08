@@ -1,1 +1,5 @@
+# Ignore webpack config files
 webpack*
+
+# Ignore jest config file
+jest.config.*
