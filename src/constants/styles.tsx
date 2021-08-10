@@ -16,15 +16,15 @@ export const globalStyles = {
 };
 
 export const wrapper = {
-  position: 'relative',
   backgroundColor: '#13171f',
   border: '3px solid #2a323e',
   boxSizing: 'border-box',
   color: 'white',
   display: 'flex',
   flexDirection: 'column',
-  minHeight: '525px',
   maxWidth: '875px',
+  minHeight: '525px',
+  position: 'relative',
 } as CSSObject;
 
 export const header = {
@@ -38,8 +38,8 @@ export const header = {
 } as CSSObject;
 
 export const spread = {
-  opacity: '0.3',
   display: 'none',
+  opacity: '0.3',
   [mq[tablet]]: {
     display: 'block',
   },
@@ -47,22 +47,22 @@ export const spread = {
 
 export const groupDropdown = {
   backgroundColor: '#2a323e',
-  color: 'white',
   border: 'none',
   borderRadius: '3px',
+  color: 'white',
   padding: '2px 3px 2px 3px',
 };
 
 export const feedContainer = {
+  alignItems: 'center',
   display: 'flex',
   flexDirection: 'column',
   flex: '1',
-  alignItems: 'center',
   width: '100%',
   [mq[tablet]]: {
+    alignItems: 'flex-start',
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'flex-start',
   },
 } as CSSObject;
 
@@ -99,15 +99,17 @@ export const feedFooter = {
 } as CSSObject;
 
 const buttonBase = {
+  alignItems: 'center',
+  border: 'none',
+  borderRadius: '4px',
+  color: 'white',
   cursor: 'pointer',
   display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  width: '126px',
-  height: '33px',
-  borderRadius: '4px',
-  margin: '10px 0px 10px 0px',
   fontSize: '0.9em',
+  height: '33px',
+  justifyContent: 'center',
+  margin: '10px 0px 10px 0px',
+  width: '126px',
 };
 
 export const toggleFeedButton = {

@@ -3,7 +3,7 @@ import { ReactElement } from 'react';
 import { killFeedButton } from '@/constants/styles';
 
 const KillFeedButton = (): ReactElement => {
-  return <div css={killFeedButton}>Kill Feed</div>;
+  return <button css={killFeedButton}>Kill Feed</button>;
 };
 
 export default KillFeedButton;
