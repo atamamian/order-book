@@ -4,7 +4,7 @@ exports[`<App /> renders 1`] = `
 <body>
   <div>
     <div
-      class="css-xbrsic-App"
+      class="css-l9t6dj-App"
       data-testid="wrapper"
     >
       <div
@@ -17,13 +17,13 @@ exports[`<App /> renders 1`] = `
           Order Book
         </div>
         <div
-          class="css-1ro6dqh-Spread"
+          class="css-1pz83m5-Spread"
           data-testid="spread-data"
         >
           Spread: 0.0 (NaN%)
         </div>
         <select
-          class="css-1bn48zu-GroupSelect"
+          class="css-1psousg-GroupSelect"
           data-testid="market-group"
           name="market-group"
         >
@@ -45,7 +45,7 @@ exports[`<App /> renders 1`] = `
         </select>
       </div>
       <div
-        class="css-qw88vv-FeedContainer"
+        class="css-vq158v-FeedContainer"
       >
         <div
           class="css-1cl7lhk-FeedColumn"
@@ -65,7 +65,7 @@ exports[`<App /> renders 1`] = `
           </div>
         </div>
         <div
-          class="css-1lr1k6l-Spread"
+          class="css-l4v3zl-Spread"
           data-testid="spread-data"
         >
           Spread: 0.0 (NaN%)
@@ -92,16 +92,16 @@ exports[`<App /> renders 1`] = `
         class="css-4bbvyn-FeedFooter"
       >
         <button
-          class="css-1ivijy9-ToggleFeedButton"
+          class="css-uv2y0q-ToggleFeedButton"
           data-testid="toggle-feed-button"
         >
           Toggle Feed
         </button>
-        <div
-          class="css-c0l2sr-KillFeedButton"
+        <button
+          class="css-1eisihy-KillFeedButton"
         >
           Kill Feed
-        </div>
+        </button>
       </div>
     </div>
   </div>
