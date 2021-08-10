@@ -14,7 +14,8 @@
     "covreport": "open coverage/lcov-report/index.html",
     "dev": "webpack serve --progress --color --mode development --config webpack.config.development.js",
     "lint": "eslint . --ext .tsx",
-    "test": "jest --coverage"
+    "jest": "jest --coverage",
+    "test": "concurrently --names \"JEST,ESLINT\" -c \"blue.bold,magenta.bold\" \"jest --coverage\" \"eslint . --ext .tsx\""
   },
   "dependencies": {
     "@emotion/react": "^11.4.1",
@@ -32,6 +33,7 @@
     "@types/react-test-renderer": "^17.0.1",
     "@typescript-eslint/eslint-plugin": "^4.29.0",
     "@typescript-eslint/parser": "^4.29.0",
+    "concurrently": "^6.2.1",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",

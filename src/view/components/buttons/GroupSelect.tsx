@@ -1,12 +1,11 @@
 import { ReactElement } from 'react';
-import { get, map } from 'lodash';
+import { map } from 'lodash';
 
-import markets from '@/constants/markets';
 import { groupDropdown } from '@/constants/styles';
 
-const GroupSelect = ({ market = 'XBT' }: { market?: string }): ReactElement => (
+const GroupSelect = ({ tickSizes }: { tickSizes: Array<string> }): ReactElement => (
   <select css={groupDropdown} name="market-group" data-testid="market-group">
-    {map(get(markets, `${market}.tickSizes`, get(markets, 'XBT.tickSizes')), (value) => (
+    {map(tickSizes, (value) => (
       <option key={value} value={value}>{`Group ${value}`}</option>
     ))}
   </select>

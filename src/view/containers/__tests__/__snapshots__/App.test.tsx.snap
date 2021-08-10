@@ -20,7 +20,7 @@ exports[`<App /> renders 1`] = `
           class="css-1ro6dqh-Spread"
           data-testid="spread-data"
         >
-          Spread: 0.0 (0%)
+          Spread: 0.0 (NaN%)
         </div>
         <select
           class="css-1bn48zu-GroupSelect"
@@ -63,50 +63,12 @@ exports[`<App /> renders 1`] = `
               PRICE
             </span>
           </div>
-          <div
-            class="css-1bkq1c3-FeedRow"
-          >
-            <span
-              class="total"
-            >
-              0
-            </span>
-            <span
-              class="size"
-            >
-              0
-            </span>
-            <span
-              class="price"
-            >
-              0.00
-            </span>
-          </div>
-          <div
-            class="css-1bkq1c3-FeedRow"
-          >
-            <span
-              class="total"
-            >
-              0
-            </span>
-            <span
-              class="size"
-            >
-              0
-            </span>
-            <span
-              class="price"
-            >
-              0.00
-            </span>
-          </div>
         </div>
         <div
           class="css-1lr1k6l-Spread"
           data-testid="spread-data"
         >
-          Spread: 0.0 (0%)
+          Spread: 0.0 (NaN%)
         </div>
         <div
           class="css-1cl7lhk-FeedColumn"
@@ -124,56 +86,19 @@ exports[`<App /> renders 1`] = `
               PRICE
             </span>
           </div>
-          <div
-            class="css-1bt4gd7-FeedRow"
-          >
-            <span
-              class="total"
-            >
-              0
-            </span>
-            <span
-              class="size"
-            >
-              0
-            </span>
-            <span
-              class="price"
-            >
-              0.00
-            </span>
-          </div>
-          <div
-            class="css-1bt4gd7-FeedRow"
-          >
-            <span
-              class="total"
-            >
-              0
-            </span>
-            <span
-              class="size"
-            >
-              0
-            </span>
-            <span
-              class="price"
-            >
-              0.00
-            </span>
-          </div>
         </div>
       </div>
       <div
         class="css-4bbvyn-FeedFooter"
       >
-        <div
-          class="css-10sfhb4-ToggleFeedButton"
+        <button
+          class="css-1ivijy9-ToggleFeedButton"
+          data-testid="toggle-feed-button"
         >
           Toggle Feed
-        </div>
+        </button>
         <div
-          class="css-127tpaj-KillFeedButton"
+          class="css-c0l2sr-KillFeedButton"
         >
           Kill Feed
         </div>
