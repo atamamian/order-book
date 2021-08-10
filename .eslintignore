@@ -1,3 +1,6 @@
+# Ignore build files
+dist
+
 # Ignore webpack config files
 webpack*
 

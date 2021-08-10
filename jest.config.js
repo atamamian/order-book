@@ -13,6 +13,13 @@ module.exports = {
     },
   },
   moduleFileExtensions: [...defaults.moduleFileExtensions, 'ts', 'tsx'],
+  moduleNameMapper: {
+    '^@/components(.*)$': '<rootDir>/src/view/components$1',
+    '^@/constants(.*)$': '<rootDir>/src/constants$1',
+    '^@/containers(.*)$': '<rootDir>/src/view/containers$1',
+    '^@/helpers(.*)$': '<rootDir>/src/helpers$1',
+    '^@/types(.*)$': '<rootDir>/src/types$1',
+  },
   modulePathIgnorePatterns: ['<rootDir>/node_modules'],
   preset: 'ts-jest',
   roots: ['<rootDir>/src'],

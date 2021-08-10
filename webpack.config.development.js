@@ -3,6 +3,10 @@ const ForkTsCheckerNotifierWebpackPlugin = require('fork-ts-checker-notifier-web
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
+function srcPath(subdir) {
+  return path.join(__dirname, "src", subdir);
+}
+
 module.exports = {
   context: process.cwd(),
   entry: './src/index.tsx',
@@ -36,12 +40,19 @@ module.exports = {
     }),
   ],
   resolve: {
+    alias: {
+      '@/components': srcPath('view/components'),
+      '@/constants': srcPath('constants'),
+      '@/containers': srcPath('view/containers'),
+      '@/helpers': srcPath('helpers'),
+      '@/types': srcPath('types'),
+    },
     extensions: ['.tsx', '.ts', '.js'],
   },
+  devtool: 'eval-source-map',
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
-    open: true,
     port: 3000,
   },
 };
