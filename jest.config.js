@@ -2,7 +2,10 @@
 const { defaults } = require('jest-config');
 module.exports = {
   collectCoverage: true,
-  collectCoverageFrom: ['src/**/*.{ts,tsx}'],
+  collectCoverageFrom: [
+    'src/**/*.{ts,tsx}',
+    '!src/index.tsx',
+  ],
   coverageDirectory: 'coverage',
   coverageReporters: ['json', 'json-summary', 'lcov', 'text'],
   coverageThreshold: {
