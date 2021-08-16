@@ -1,9 +1,15 @@
-import { ReactElement } from 'react';
+import { ReactElement, useContext } from 'react';
 
 import { killFeedButton } from '@/constants/styles';
+import AppContext from '@/helpers/contexts';
 
 const KillFeedButton = (): ReactElement => {
-  return <button css={killFeedButton}>Kill Feed</button>;
+  const { killFeed } = useContext(AppContext);
+  return (
+    <button css={killFeedButton} data-testid="kill-feed-button" onClick={killFeed}>
+      Kill Feed
+    </button>
+  );
 };
 
 export default KillFeedButton;

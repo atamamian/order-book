@@ -1,17 +1,24 @@
-import { ReactElement, useContext } from 'react';
+import { ReactElement } from 'react';
 
 import FeedColumn from '@/components/FeedColumn';
+import LoadingSpinner from '@/components/LoadingSpinner';
 import Spread from '@/components/Spread';
 import { feedContainer } from '@/constants/styles';
-import AppContext from '@/helpers/contexts';
+import { OrderObject } from '@/types/feedTypes';
 
-const FeedContainer = (): ReactElement => {
-  const { askPrice, bidPrice, buyList, sellList } = useContext(AppContext);
+const FeedContainer = ({
+  askList,
+  bidList,
+}: {
+  askList: OrderObject[];
+  bidList: OrderObject[];
+}): ReactElement => {
   return (
     <div css={feedContainer}>
-      <FeedColumn feedData={buyList} />
-      <Spread ask={askPrice} bid={bidPrice} mode="mobile" />
-      <FeedColumn feedData={sellList} feedType="sell" />
+      {askList.length + bidList.length === 0 && <LoadingSpinner />}
+      <FeedColumn feedData={bidList} />
+      <Spread mode="mobile" />
+      <FeedColumn feedData={askList} feedType="sell" />
     </div>
   );
 };

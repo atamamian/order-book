@@ -17,12 +17,11 @@ describe('<ToggleFeedButton />', () => {
   it('changes market on click', () => {
     const mockContext = {
       ...defaultAppContext,
-      selectedMarket: ETH,
-      updateSelectedMarket: jest.fn(),
+      toggleFeed: jest.fn(),
     };
 
     const { queryByTestId } = renderWithContext(mockContext);
     fireEvent.click(queryByTestId('toggle-feed-button') as HTMLElement);
-    expect(mockContext.updateSelectedMarket).toHaveBeenCalled();
+    expect(mockContext.toggleFeed).toHaveBeenCalled();
   });
 });

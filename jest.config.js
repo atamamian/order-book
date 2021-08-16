@@ -2,6 +2,7 @@
 const { defaults } = require('jest-config');
 module.exports = {
   collectCoverage: true,
+  collectCoverageFrom: ['src/**/*.{ts,tsx}'],
   coverageDirectory: 'coverage',
   coverageReporters: ['json', 'json-summary', 'lcov', 'text'],
   coverageThreshold: {
@@ -18,6 +19,7 @@ module.exports = {
     '^@/constants(.*)$': '<rootDir>/src/constants$1',
     '^@/containers(.*)$': '<rootDir>/src/view/containers$1',
     '^@/helpers(.*)$': '<rootDir>/src/helpers$1',
+    '^@/store(.*)$': '<rootDir>/src/store$1',
     '^@/types(.*)$': '<rootDir>/src/types$1',
   },
   modulePathIgnorePatterns: ['<rootDir>/node_modules'],

@@ -1,20 +1,27 @@
 export type FeedColumnProps = {
-  feedData: Array<OrderObject>;
+  feedData: OrderObject[];
   feedType?: 'buy' | 'sell';
+};
+
+export type WebSocketResponseData = {
+  asks?: number[][];
+  bids?: number[][];
 };
 
 export type FeedRowProps = {
   categories?: boolean;
-  feedType: 'buy' | 'sell';
-  price?: string;
-  size?: string;
-  total?: string;
+  mode?: 'buy' | 'sell' | 'header';
+  price?: number;
+  size?: number;
+  total?: number;
 };
 
+export type OrderList = Map<number, OrderObject>;
+
 export type OrderObject = {
-  price: string;
-  size: string;
-  total: string;
+  price: number;
+  size: number;
+  total: number;
 };
 
 export type TickerData = {
