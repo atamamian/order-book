@@ -4,7 +4,7 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 function srcPath(subdir) {
-  return path.join(__dirname, "src", subdir);
+  return path.join(__dirname, 'src', subdir);
 }
 
 module.exports = {
@@ -13,7 +13,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: './dist/index.js',
-    publicPath: "/",
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -45,6 +45,7 @@ module.exports = {
       '@/constants': srcPath('constants'),
       '@/containers': srcPath('view/containers'),
       '@/helpers': srcPath('helpers'),
+      '@/store': srcPath('store'),
       '@/types': srcPath('types'),
     },
     extensions: ['.tsx', '.ts', '.js'],

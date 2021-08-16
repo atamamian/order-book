@@ -1,25 +1,25 @@
 import { createContext } from 'react';
 import { noop } from 'lodash';
-import { OrderObject, TickerData } from '@/types/feedTypes';
+import { TickerData } from '@/types/feedTypes';
 
 export type AppContextType = {
-  askPrice: string;
-  bidPrice: string;
-  buyList: Array<OrderObject>;
-  highestTotal: string;
+  askPrice: number;
+  bidPrice: number;
+  highestTotal: number;
+  killFeed: () => void;
   selectedMarket: TickerData;
-  sellList: Array<OrderObject>;
-  updateSelectedMarket: (market: TickerData) => void;
+  setGrouping: (grouping: number) => Promise<void>;
+  toggleFeed: () => void;
 };
 
 export const defaultAppContext: AppContextType = {
-  askPrice: '',
-  bidPrice: '',
-  buyList: [],
-  highestTotal: '',
+  askPrice: 0,
+  bidPrice: 0,
+  highestTotal: 0,
+  killFeed: noop,
   selectedMarket: {} as TickerData,
-  sellList: [],
-  updateSelectedMarket: noop,
+  setGrouping: noop as (grouping: number) => Promise<void>,
+  toggleFeed: noop,
 };
 
 export default createContext(defaultAppContext);

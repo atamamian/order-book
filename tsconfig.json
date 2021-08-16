@@ -11,12 +11,13 @@
       "@/constants/*": [ "constants/*" ],
       "@/containers/*": [ "view/containers/*" ],
       "@/helpers/*": [ "helpers/*" ],
+      "@/store/*": [ "store/*" ],
       "@/types/*": [ "types/*" ],
     },
     "skipLibCheck": true,
     "strict": true,
     "target": "ES6",
-    "types": ["jest"]
+    "types": ["node", "jest"]
   },
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]

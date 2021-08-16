@@ -4,7 +4,7 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const { removeDataTestIdTransformer } = require('typescript-transformer-jsx-remove-data-test-id');
 
 function srcPath(subdir) {
-  return path.join(__dirname, "src", subdir);
+  return path.join(__dirname, 'src', subdir);
 }
 
 module.exports = {
@@ -14,7 +14,6 @@ module.exports = {
     path: path.join(process.cwd(), 'dist'),
     filename: './dist/index.js',
   },
-  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -37,8 +36,9 @@ module.exports = {
   plugins: [
     new ForkTsCheckerWebpackPlugin({
       async: false,
-      useTypescriptIncrementalApi: true,
-      memoryLimit: 4096
+      typescript: {
+        memoryLimit: 4096
+      },
     }),
     new HtmlWebPackPlugin({
       hash: true,
@@ -64,6 +64,7 @@ module.exports = {
       '@/constants': srcPath('constants'),
       '@/containers': srcPath('view/containers'),
       '@/helpers': srcPath('helpers'),
+      '@/store': srcPath('store'),
       '@/types': srcPath('types'),
     },
     extensions: ['.tsx', '.ts', '.js'],
