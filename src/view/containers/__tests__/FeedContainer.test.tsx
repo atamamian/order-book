@@ -7,4 +7,8 @@ describe('<FeedContainer />', () => {
     const { queryByTestId } = render(<FeedContainer askList={[]} bidList={[]} />);
     expect(queryByTestId('loading-spinner')).not.toBeNull();
   });
+  it('renders service error when prop passed in', () => {
+    const { queryByTestId } = render(<FeedContainer askList={[]} bidList={[]} serviceError />);
+    expect(queryByTestId('service-error-message')).not.toBeNull();
+  });
 });
