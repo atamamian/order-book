@@ -14,7 +14,6 @@ import FeedContainer from './FeedContainer';
 import FeedFooter from './FeedFooter';
 import { formatListForFeed } from '@/helpers/feed';
 
-const webSocketClient = new WebSocket('wss://www.cryptofacilities.com/ws/v1');
 const { SUBSCRIBE, UNSUBSCRIBE } = webSocketConnectionTypes;
 
 class App extends Component {
@@ -30,6 +29,8 @@ class App extends Component {
     grouping: Number(XBT.tickSizes[0]),
     highestTotal: 0,
     selectedMarket: XBT,
+    serviceError: false,
+    webSocketClient: new WebSocket('wss://www.cryptofacilities.com/ws/v1'),
   };
 
   constructor(props: Record<string, never>) {
@@ -43,7 +44,11 @@ class App extends Component {
   }
 
   componentDidMount(): void {
-    const { selectedMarket } = this.state;
+    this.initializeWebSocket();
+  }
+
+  initializeWebSocket(): void {
+    const { selectedMarket, webSocketClient } = this.state;
     webSocketClient.onopen = () =>
       webSocketClient.send(
         getWebSocketMessage({ connectionType: SUBSCRIBE, symbol: selectedMarket.symbol }),
@@ -53,8 +58,15 @@ class App extends Component {
       queue: this.appStore,
       setData: this.handleFeedData,
     });
-    // webSocketClient.onclose = () => void;
-    // webSocketClient.onerror = () => handleWebSocketError();
+    webSocketClient.onerror = () => this.handleWebSocketError();
+  }
+
+  handleWebSocketError(): void {
+    const { webSocketClient } = this.state;
+    webSocketClient.close();
+    const { grouping, selectedMarket } = this.state;
+    this.setState({ serviceError: true });
+    this.clearFeedData({ grouping, market: selectedMarket });
   }
 
   async clearFeedData({
@@ -75,17 +87,22 @@ class App extends Component {
     });
   }
 
-  killFeed(): void {
-    const { selectedMarket } = this.state;
+  async killFeed(): Promise<void> {
+    const { serviceError, webSocketClient } = this.state;
+    if (serviceError) {
+      await this.setState({
+        serviceError: false,
+        webSocketClient: new WebSocket('wss://www.cryptofacilities.com/ws/v1'),
+      });
+      this.initializeWebSocket();
+    }
     if (webSocketClient.readyState === webSocketClient.OPEN) {
-      webSocketClient.send(
-        getWebSocketMessage({ connectionType: UNSUBSCRIBE, symbol: selectedMarket.symbol }),
-      );
+      webSocketClient.dispatchEvent(new ErrorEvent('error'));
     }
   }
 
   async toggleFeed(): Promise<void> {
-    const { selectedMarket } = this.state;
+    const { selectedMarket, webSocketClient } = this.state;
     webSocketClient.onmessage = null;
     if (webSocketClient.readyState === webSocketClient.OPEN) {
       webSocketClient.send(
@@ -163,9 +180,11 @@ class App extends Component {
   }
 
   throttledToggle = throttle(this.toggleFeed, 500, { trailing: false });
+  throttledKill = throttle(this.killFeed, 1000, { trailing: false });
 
   render(): ReactElement {
-    const { askList, askPrice, bidList, bidPrice, highestTotal, selectedMarket } = this.state;
+    const { askList, askPrice, bidList, bidPrice, highestTotal, selectedMarket, serviceError } =
+      this.state;
     return (
       <>
         <Global styles={globalStyles} />
@@ -175,14 +194,14 @@ class App extends Component {
               askPrice,
               bidPrice,
               highestTotal,
-              killFeed: this.killFeed,
+              killFeed: this.throttledKill.bind(this),
               selectedMarket,
               setGrouping: this.setGrouping,
               toggleFeed: this.throttledToggle.bind(this),
             }}
           >
             <Header />
-            <FeedContainer askList={askList} bidList={bidList} />
+            <FeedContainer askList={askList} bidList={bidList} serviceError={serviceError} />
             <FeedFooter />
           </AppContext.Provider>
         </div>

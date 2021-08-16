@@ -178,6 +178,13 @@ export const killFeedButton = {
   marginLeft: '8px',
 };
 
+export const serviceErrorMessage = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+} as CSSObject;
+
 const styleObjects = {
   feedRow: {
     sell: {
