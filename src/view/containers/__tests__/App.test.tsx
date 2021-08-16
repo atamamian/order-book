@@ -13,8 +13,20 @@ describe('<App />', () => {
     await waitFor(() => expect(queryAllByTestId('spread-data')[0]?.innerHTML).toContain('ETH'));
   });
   it('kills feed', async () => {
+    const mockSocket = new WebSocket('wss://test');
+    const wsSpy = jest.spyOn(global, 'WebSocket');
+    const mockDispatch = jest.fn();
+    wsSpy.mockImplementation((url: string) => {
+      return {
+        ...mockSocket,
+        dispatchEvent: mockDispatch,
+      };
+    });
     const { queryByTestId } = render(<App />);
     fireEvent.click(queryByTestId('kill-feed-button') as HTMLElement);
+    expect(mockDispatch).toHaveBeenCalled();
+    wsSpy.mockClear();
+    wsSpy.mockRestore();
   });
   it('sets grouping when changed', () => {
     const { queryByTestId } = render(<App />);
